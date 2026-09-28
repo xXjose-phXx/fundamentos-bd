@@ -1,0 +1,15 @@
+<h1>Productos</h1>
+<table border="1">
+  <tr>
+    <th>ID</th><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th>
+  </tr>
+  {% for p in productos %}
+  <tr>
+    <td>{{ p.idproducto }}</td>
+    <td>{{ p.nombre }}</td>
+    <td>{{ p.categoria }}</td>
+    <td>{{ p.precio }}</td>
+    <td>{{ p.stock }}</td>
+  </tr>
+  {% endfor %}
+</table>

@@ -1,0 +1,15 @@
+<h1>Pedidos</h1>
+<table border="1">
+  <tr>
+    <th>ID pedido</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th>Total</th>
+  </tr>
+  {% for p in pedidos %}
+  <tr>
+    <td>{{ p.idpedido }}</td>
+    <td>{{ p.cliente }}</td>
+    <td>{{ p.fecha_pedido }}</td>
+    <td>{{ p.estado }}</td>
+    <td>{{ p.total }}</td>
+  </tr>
+  {% endfor %}
+</table>
