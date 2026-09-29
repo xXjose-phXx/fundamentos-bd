@@ -1,3 +1,18 @@
-<h1>Cafetería Universitaria</h1>
-<a href="/productos">Ver productos</a><br>
-<a href="/pedidos">Ver pedidos</a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cafetería Universitaria</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cafetería Universitaria</h1>
+        <p>Selecciona una opción para consultar la información:</p>
+        <div class="buttons">
+            <a href="/productos" class="btn">Consultar Productos</a>
+            <a href="/pedidos" class="btn">Consultar Pedidos</a>
+        </div>
+    </div>
+</body>
+</html>
