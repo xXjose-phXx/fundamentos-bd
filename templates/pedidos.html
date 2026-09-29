@@ -59,7 +59,7 @@
                         <td>{{ p.Cliente }}</td>
                         <td>{{ p.Fecha }}</td>
                         <td>{{ p.Estado }}</td>
-                        <td>${{ "%.2f"|format(p.Total) }}</td>
+                        <td>${{ "%.2f"|format(p.Total or 0) }}</td>
                     </tr>
                     {% else %}
                     <tr>

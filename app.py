@@ -75,17 +75,42 @@ def agregar_pedido():
         id_cliente = request.form['cliente_idcliente']
         fecha = request.form['fecha']
         estado = request.form['estado']
+        id_producto = request.form['producto_idproducto']
+        cantidad = request.form['cantidad']
+
         conn = get_db_connection()
         cursor = conn.cursor()
+
+        # 1) Insertar el pedido
         cursor.execute(
             "INSERT INTO Pedido (cliente_idcliente, fecha_pedido, estado) VALUES (%s, %s, %s)",
             (id_cliente, fecha, estado)
         )
+        id_pedido = cursor.lastrowid
+
+        # 2) Insertar el detalle (necesitas el precio del producto)
+        cursor.execute("SELECT precio FROM Producto WHERE idproducto = %s", (id_producto,))
+        precio = cursor.fetchone()[0]
+        cursor.execute(
+            "INSERT INTO Detalle_Pedido (precio_unitario, cantidad, producto_idproducto, pedido_idpedido) VALUES (%s, %s, %s, %s)",
+            (precio, cantidad, id_producto, id_pedido)
+        )
+
         conn.commit()
         cursor.close()
         conn.close()
         return redirect('/pedidos')
-    return render_template('agregar_pedido.html')
+
+    # GET: cargar clientes y productos para los desplegables
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT idcliente, nombre FROM Cliente")
+    clientes = cursor.fetchall()
+    cursor.execute("SELECT idproducto, nombre, precio FROM Producto")
+    productos = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('agregar_pedido.html', clientes=clientes, productos=productos)
 
 
 
@@ -142,6 +167,7 @@ def actualizar_pedido(id_pedido):
 def borrar_producto(id_producto):
     conn = get_db_connection()
     cursor = conn.cursor()
+    cursor.execute("DELETE FROM Detalle_Pedido WHERE producto_idproducto = %s", (id_producto,))
     cursor.execute("DELETE FROM Producto WHERE idproducto = %s", (id_producto,))
     conn.commit()
     cursor.close()
@@ -153,11 +179,13 @@ def borrar_producto(id_producto):
 def borrar_pedido(id_pedido):
     conn = get_db_connection()
     cursor = conn.cursor()
+    cursor.execute("DELETE FROM Detalle_Pedido WHERE pedido_idpedido = %s", (id_pedido,))
     cursor.execute("DELETE FROM Pedido WHERE idpedido = %s", (id_pedido,))
     conn.commit()
     cursor.close()
     conn.close()
     return redirect('/pedidos')
+
 
 
 if __name__ == '__main__':

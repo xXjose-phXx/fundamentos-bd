@@ -1,0 +1,26 @@
+<form class="agregar" method="POST">
+    <label>Cliente</label>
+    <select name="cliente_idcliente" required>
+        {% for c in clientes %}
+        <option value="{{ c.idcliente }}">{{ c.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Producto</label>
+    <select name="producto_idproducto" required>
+        {% for prod in productos %}
+        <option value="{{ prod.idproducto }}">{{ prod.nombre }} — ${{ prod.precio }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Cantidad</label>
+    <input type="number" name="cantidad" min="1" required>
+
+    <label>Fecha</label>
+    <input type="date" name="fecha" required>
+
+    <label>Estado</label>
+    <input type="text" name="estado" required>
+
+    <button type="submit" class="btn-accion btn-accion-primario">Agregar</button>
+</form>

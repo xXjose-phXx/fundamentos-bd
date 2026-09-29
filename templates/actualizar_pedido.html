@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Pedido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Actualizar Pedido</h1>
+        <a href="/pedidos" class="btn-back">← Volver a Pedidos</a>
+        <form class="agregar" method="POST">
+            <label>ID Cliente</label>
+            <input type="text" name="cliente_idcliente" value="{{ p.cliente_idcliente }}" required>
+            <label>Fecha</label>
+            <input type="date" name="fecha" value="{{ p.fecha_pedido }}" required>
+            <label>Estado</label>
+            <input type="text" name="estado" value="{{ p.estado }}" required>
+            <button type="submit" class="btn-accion btn-accion-primario">Actualizar</button>
+        </form>
+    </div>
+</body>
+</html>

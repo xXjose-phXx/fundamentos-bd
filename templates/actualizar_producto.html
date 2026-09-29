@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Producto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Actualizar Producto</h1>
+        <a href="/productos" class="btn-back">← Volver a Productos</a>
+        <form class="agregar" method="POST">
+            <label>Nombre</label>
+            <input type="text" name="nombre" value="{{ p.nombre }}" required>
+            <label>Categoría</label>
+            <input type="text" name="categoria" value="{{ p.categoria }}" required>
+            <label>Precio</label>
+            <input type="text" name="precio" value="{{ p.precio }}" required>
+            <label>Stock</label>
+            <input type="text" name="stock" value="{{ p.stock }}" required>
+            <button type="submit" class="btn-accion btn-accion-primario">Actualizar</button>
+        </form>
+    </div>
+</body>
+</html>
