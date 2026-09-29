@@ -29,8 +29,8 @@ table {
 }
 
 th, td {
-    border: 1px solid #d1d5db;   /* líneas visibles */
-    padding: 12px 24px;          /* más aire entre columnas */
+    border: 1px solid #d1d5db;
+    padding: 12px 24px;
     text-align: left;
 }
 
